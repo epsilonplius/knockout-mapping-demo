@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>VALIUTOS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/libs/jquery/jquery.js" type="text/javascript"></script>
+        <script src="js/libs/knockout/knockout-min.js" type="text/javascript"></script>
+        <script src="js/libs/knockout.mapping/knockout.mapping.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function(){
+                
+                function valiutosViewModel(){
+                    var self=this;
+                    self.valiutos=ko.mapping.fromJS([]);
+                    
+                    $.getJSON("valiutos.php",function(data){
+                        ko.mapping.fromJS(data,self.valiutos);
+                    });
+                }
+                
+                ko.applyBindings(new valiutosViewModel());
+            });
+
+        </script>
+    </head>
+    <body>
+        <div>
+            <ul data-bind="foreach:valiutos ">
+                <li><span data-bind="text:Pavadinimas"></span> - <span data-bind="text: Simbolis"></span></li>
+            </ul>
+
+        </div>
+    </body>
+</html>
