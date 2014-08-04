@@ -15,9 +15,7 @@
                     var self=this;
                     self.valiutos=ko.mapping.fromJS([]);
                     
-                    $.getJSON("valiutos.php",function(data){
-                        ko.mapping.fromJS(data,self.valiutos);
-                    });
+                    $.getJSON("valiutos.php",function(data){ko.mapping.fromJS(data,self.valiutos);});
                 }
                 
                 ko.applyBindings(new valiutosViewModel());
